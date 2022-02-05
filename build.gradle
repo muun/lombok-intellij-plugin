@@ -1,6 +1,6 @@
 plugins {
-  id "org.jetbrains.intellij" version "0.7.3"
-  id "org.jetbrains.grammarkit" version "2020.2.1"
+  id "org.jetbrains.intellij" version "1.1.3"
+  id "org.jetbrains.grammarkit" version "2021.1.1"
   id "com.github.ManifestClasspath" version "0.1.0-RELEASE"
 }
 
@@ -15,7 +15,6 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'org.jetbrains.grammarkit'
-apply plugin: 'jacoco'
 apply plugin: "com.github.ManifestClasspath"
 
 def isCI = System.getenv("CI")
@@ -49,31 +48,13 @@ sourceSets {
 }
 
 intellij {
-  version ideaVersion
+  version = "${ideaVersion}"
   println "Building for IntelliJ version: ${version}"
 
-  pluginName pluginName
-  sandboxDirectory = "${rootProject.projectDir}/idea-sandbox/idea-${ideaVersion}"
+  pluginName = pname
+  sandboxDir = "${rootProject.projectDir}/idea-sandbox/idea-${ideaVersion}"
 
-  plugins 'java'
-}
-
-patchPluginXml {
-  version artifactVersion
-
-  pluginDescription(file(descriptionFile).text)
-  changeNotes(file(changesFile).text)
-}
-
-publishPlugin {
-  token System.getenv('IJ_PLUGIN_TOKEN')
-}
-
-jacocoTestReport {
-  reports {
-    xml.enabled = true
-    html.enabled = true
-  }
+  plugins = ['java']
 }
 
 configurations {
@@ -89,6 +70,7 @@ dependencies {
 }
 
 task generateLombok {
+    println "here"
   doLast {
 // Tasks
     copy {
@@ -132,7 +114,6 @@ clean.doFirst {
 }
 
 compileJava.dependsOn generateLombokConfigLexer, generateLombok
-check.dependsOn jacocoTestReport
 
 test {
   // show standard out and standard error of the test JVM(s) on the console
