@@ -231,22 +231,6 @@
       key="inspection.redundant.modifiers.val.lombok.display.name" bundle="messages.LombokBundle"/>
 
     <intentionAction>
-      <className>de.plushnikov.intellij.plugin.intention.valvar.to.ReplaceExplicitTypeWithValIntentionAction</className>
-      <category>Lombok</category>
-    </intentionAction>
-    <intentionAction>
-      <className>de.plushnikov.intellij.plugin.intention.valvar.to.ReplaceExplicitTypeWithVarIntentionAction</className>
-      <category>Lombok</category>
-    </intentionAction>
-    <intentionAction>
-      <className>de.plushnikov.intellij.plugin.intention.valvar.from.ReplaceValWithExplicitTypeIntentionAction</className>
-      <category>Lombok</category>
-    </intentionAction>
-    <intentionAction>
-      <className>de.plushnikov.intellij.plugin.intention.valvar.from.ReplaceVarWithExplicitTypeIntentionAction</className>
-      <category>Lombok</category>
-    </intentionAction>
-    <intentionAction>
       <className>de.plushnikov.intellij.plugin.intention.ReplaceWithLombokAnnotationAction</className>
       <category>Lombok</category>
     </intentionAction>
